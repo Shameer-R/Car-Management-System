@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -22,7 +23,18 @@ public class Main {
 
         switch (scanner.nextInt()) {
             case 1:
-                user.Add();
+
+                 System.out.println("Enter the make of the car: ");
+                 String carMake = scanner.next();
+                 System.out.println("Enter the model of the car: ");
+                 String carModel = scanner.next();
+                 System.out.println("Enter the color of the car: ");
+                 String carColor = scanner.next();
+                 System.out.println("Enter the miles per gallon of the car: ");
+                 int carMPG = scanner.nextInt();
+
+                 user.Add(carMake, carModel, carColor, carMPG);
+
                 break;
             case 2:
                 user.Remove();

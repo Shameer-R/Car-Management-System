@@ -1,5 +1,4 @@
 public class Car {
-    public String name;
     public String make;
     public String model;
     public String color;
