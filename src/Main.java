@@ -6,44 +6,54 @@ public class Main {
 
         User user = new User();
 
+        boolean Running = true;
+
         // Get Users Information
 
         System.out.println("Hello, what is your name?");
         user.Name = scanner.next();
         System.out.println("Welcome: " + user.Name);
 
-        // Give the user options
+        while (Running) {
 
-        System.out.println("\nWhat would you like to do?: ");
-        System.out.println("1 - Add a car");
-        System.out.println("2 - Remove a car");
-        System.out.println("3 - Search for cars");
+            // Give the user options
 
-        // Handle user options
+            System.out.println("\nWhat would you like to do?: ");
+            System.out.println("1 - Add a car");
+            System.out.println("2 - Remove a car");
+            System.out.println("3 - Search for cars");
+            System.out.println("0 - Exit Application");
 
-        switch (scanner.nextInt()) {
-            case 1:
+            // Handle user options
 
-                 System.out.println("Enter the make of the car: ");
-                 String carMake = scanner.next();
-                 System.out.println("Enter the model of the car: ");
-                 String carModel = scanner.next();
-                 System.out.println("Enter the color of the car: ");
-                 String carColor = scanner.next();
-                 System.out.println("Enter the miles per gallon of the car: ");
-                 int carMPG = scanner.nextInt();
+            switch (scanner.nextInt()) {
+                case 0:
+                    Running = false;
+                    break;
+                case 1:
 
-                 user.Add(carMake, carModel, carColor, carMPG);
+                    System.out.println("Enter the make of the car: ");
+                    String carMake = scanner.next();
+                    System.out.println("Enter the model of the car: ");
+                    String carModel = scanner.next();
+                    System.out.println("Enter the color of the car: ");
+                    String carColor = scanner.next();
+                    System.out.println("Enter the miles per gallon of the car: ");
+                    int carMPG = scanner.nextInt();
 
-                break;
-            case 2:
-                user.Remove();
-                break;
-            case 3:
-                System.out.println("This has not been implemented yet.");
-                break;
-             default:
-                System.out.println("ERROR");
+                    user.Add(carMake, carModel, carColor, carMPG);
+
+                    break;
+                case 2:
+                    user.Remove();
+                    break;
+                case 3:
+                    System.out.println("This has not been implemented yet.");
+                    break;
+                default:
+                    System.out.println("Invalid input");
+            }
         }
+
     }
 }
