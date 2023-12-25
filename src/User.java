@@ -32,6 +32,8 @@ public class User {
                Car carIndex = garage.get(removeIndex);
                System.out.println("The " + carIndex.color + " " + carIndex.make + " " + carIndex.model + " has been removed.");
                garage.remove(carIndex);
+           } else {
+               System.out.println("There is no car with that index.");
            }
 
        } else {
