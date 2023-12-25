@@ -28,6 +28,7 @@ public class Main {
 
             switch (scanner.nextInt()) {
                 case 0:
+                    System.out.println("\nGoodbye " + user.Name);
                     Running = false;
                     break;
                 case 1:
