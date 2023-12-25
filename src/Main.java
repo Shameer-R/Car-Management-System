@@ -6,6 +6,8 @@ public class Main {
 
         User user = new User();
 
+        User.Load();
+
         boolean Running = true;
 
         // Get Users Information
@@ -13,6 +15,7 @@ public class Main {
         System.out.println("Hello, what is your name?");
         user.Name = scanner.next();
         System.out.println("Welcome: " + user.Name);
+
 
         while (Running) {
 
@@ -22,12 +25,13 @@ public class Main {
             System.out.println("1 - Add a car");
             System.out.println("2 - Remove a car");
             System.out.println("3 - Search for cars");
-            System.out.println("0 - Exit Application");
+            System.out.println("0 - Exit Application and Save");
 
             // Handle user options
 
             switch (scanner.nextInt()) {
                 case 0:
+                    user.Exit();
                     System.out.println("\nGoodbye " + user.Name);
                     Running = false;
                     break;

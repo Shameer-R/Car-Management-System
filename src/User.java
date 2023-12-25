@@ -1,11 +1,45 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.io.*;
 
 public class User {
     public String Name;
+    private static final String FileName = "Car-Management.txt";
 
     List<Car> garage = new ArrayList<Car>();
+
+    private static void SaveObject(Serializable obj, String filename) throws IOException {
+        FileOutputStream fileSaver = new FileOutputStream(filename);
+        ObjectOutputStream objectSaver = new ObjectOutputStream(fileSaver);
+        objectSaver.writeObject(obj);
+        objectSaver.flush();
+        objectSaver.close();
+    }
+
+    private static <T> T LoadObject(String fileName) throws IOException, ClassNotFoundException{
+        FileInputStream fileLoader = new FileInputStream("Car-Management.txt");
+        ObjectInputStream objectloader = new ObjectInputStream(fileLoader);
+        T loadedObject = (T) objectloader.readObject();
+        objectloader.close();
+        return loadedObject;
+    }
+
+    public static void Load() {
+        System.out.println("Loading cars");
+
+        Car loadedCar = null;
+
+        try {
+            loadedCar = LoadObject(FileName);
+        } catch (IOException e) {
+            System.err.println("Car was not loaded :(");
+        } catch (ClassNotFoundException e) {
+            System.err.println("File not found");
+        }
+        System.out.println("Loaded successfully");
+        System.out.println(loadedCar.make);
+    }
 
     public void AddCar(String carMake, String carModel, String carColor, int carMPG) {
         Car car = new Car();
@@ -45,6 +79,18 @@ public class User {
         for (int i = 0; i < garage.size(); i++) {
             Car carIndex = garage.get(i);
             System.out.println(carIndex.make + " - " + carIndex.model + " - " + carIndex.color + " - " + carIndex.mpg);
+        }
+    }
+
+    public void Exit() {
+        for (int i = 0; i < garage.size(); i++) {
+            Car carIndex = garage.get(i);
+            try {
+                SaveObject(carIndex, FileName);
+            } catch (IOException e) {
+                System.err.println(FileName + " was not saved");
+            }
+            System.out.println(FileName + " saved successfully");
         }
     }
 }
