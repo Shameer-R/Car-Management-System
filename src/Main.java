@@ -49,7 +49,7 @@ public class Main {
                     user.Remove();
                     break;
                 case 3:
-                    System.out.println("This has not been implemented yet.");
+                    user.Search();
                     break;
                 default:
                     System.out.println("Invalid input");

@@ -40,4 +40,11 @@ public class User {
            System.out.println("There are no cars to remove.");
        }
     }
+
+    public void Search() {
+        for (int i = 0; i < garage.size(); i++) {
+            Car carIndex = garage.get(i);
+            System.out.println(carIndex.make + " - " + carIndex.model + " - " + carIndex.color + " - " + carIndex.mpg);
+        }
+    }
 }
