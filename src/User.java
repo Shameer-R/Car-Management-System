@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class User {
     public String Name;
@@ -13,14 +14,28 @@ public class User {
         car.color = carColor;
         car.mpg = carMPG;
         garage.add(car);
-
-        for (int i = 0; i < garage.size(); i++) {
-            Car carIndex = garage.get(i);
-            System.out.println(carIndex.make + " - " + carIndex.model + " - " + carIndex.color + " - " + carIndex.mpg);
-        }
     }
 
     public void Remove() {
-        System.out.println("Remove cars");
+       if (!garage.isEmpty()) {
+           System.out.println("Enter the index of the car you want to remove: ");
+           for (int i = 0; i < garage.size(); i++) {
+               Car carIndex = garage.get(i);
+               System.out.println(i + ": " + carIndex.make + " - " + carIndex.model + " - " + carIndex.color + " - " + carIndex.mpg);
+           }
+
+           Scanner scanner = new Scanner(System.in);
+
+           int removeIndex = scanner.nextInt();
+
+           if (removeIndex >= 0 && removeIndex <= garage.size()) {
+               Car carIndex = garage.get(removeIndex);
+               System.out.println("The " + carIndex.color + " " + carIndex.make + " " + carIndex.model + " has been removed.");
+               garage.remove(carIndex);
+           }
+
+       } else {
+           System.out.println("There are no cars to remove.");
+       }
     }
 }
