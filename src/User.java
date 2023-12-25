@@ -7,7 +7,7 @@ public class User {
 
     List<Car> garage = new ArrayList<Car>();
 
-    public void Add(String carMake, String carModel, String carColor, int carMPG) {
+    public void AddCar(String carMake, String carModel, String carColor, int carMPG) {
         Car car = new Car();
         car.make = carMake;
         car.model = carModel;
@@ -16,7 +16,7 @@ public class User {
         garage.add(car);
     }
 
-    public void Remove() {
+    public void RemoveCar() {
        if (!garage.isEmpty()) {
            System.out.println("Enter the index of the car you want to remove: ");
            for (int i = 0; i < garage.size(); i++) {
@@ -41,7 +41,7 @@ public class User {
        }
     }
 
-    public void Search() {
+    public void SearchCars() {
         for (int i = 0; i < garage.size(); i++) {
             Car carIndex = garage.get(i);
             System.out.println(carIndex.make + " - " + carIndex.model + " - " + carIndex.color + " - " + carIndex.mpg);

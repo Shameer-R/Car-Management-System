@@ -42,14 +42,14 @@ public class Main {
                     System.out.println("Enter the miles per gallon of the car: ");
                     int carMPG = scanner.nextInt();
 
-                    user.Add(carMake, carModel, carColor, carMPG);
+                    user.AddCar(carMake, carModel, carColor, carMPG);
 
                     break;
                 case 2:
-                    user.Remove();
+                    user.RemoveCar();
                     break;
                 case 3:
-                    user.Search();
+                    user.SearchCars();
                     break;
                 default:
                     System.out.println("Invalid input");
