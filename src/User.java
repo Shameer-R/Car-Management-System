@@ -39,12 +39,14 @@ public class User {
         }
         System.out.println("Loaded successfully");
 
-        for (int i = 0; i < loadedCar.size(); i++) {
-            Car carIndex = loadedCar.get(i);
-            garage.add(carIndex);
-        }
+        if (loadedCar != null) {
+            for (int i = 0; i < loadedCar.size(); i++) {
+                Car carIndex = loadedCar.get(i);
+                garage.add(carIndex);
+            }
 
-        new FileOutputStream(FileName).close();
+            new FileOutputStream(FileName).close();
+        }
     }
 
     public void AddCar(String carMake, String carModel, String carColor, int carMPG) {
