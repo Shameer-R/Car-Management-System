@@ -25,7 +25,7 @@ public class User {
         return loadedObject;
     }
 
-    public static void Load() {
+    public static void Load() throws IOException {
         System.out.println("Loading cars");
 
         List<Car> loadedCar = null;
@@ -43,6 +43,8 @@ public class User {
             Car carIndex = loadedCar.get(i);
             garage.add(carIndex);
         }
+
+        new FileOutputStream(FileName).close();
     }
 
     public void AddCar(String carMake, String carModel, String carColor, int carMPG) {
