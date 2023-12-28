@@ -7,17 +7,14 @@ public class User {
     public String Name;
     private static final String FileName = "Car-Management.txt";
 
-    List<Car> garage = new ArrayList<Car>();
+    static List<Car> garage = new ArrayList<Car>();
 
-    private static void SaveObject(Serializable obj, String filename, boolean Close) throws IOException {
+    private static void SaveObject(String filename) throws IOException {
         FileOutputStream fileSaver = new FileOutputStream(filename);
         ObjectOutputStream objectSaver = new ObjectOutputStream(fileSaver);
-        objectSaver.writeObject(obj);
-
-        if (Close) {
-            objectSaver.flush();
-            objectSaver.close();
-        }
+        objectSaver.writeObject(garage);
+        objectSaver.flush();
+        objectSaver.close();
     }
 
     private static <T> T LoadObject(String fileName) throws IOException, ClassNotFoundException{
@@ -31,7 +28,7 @@ public class User {
     public static void Load() {
         System.out.println("Loading cars");
 
-        Car loadedCar = null;
+        List<Car> loadedCar = null;
 
         try {
             loadedCar = LoadObject(FileName);
@@ -41,7 +38,7 @@ public class User {
             System.err.println("File not found");
         }
         System.out.println("Loaded successfully");
-        System.out.println(loadedCar.make);
+        System.out.println(loadedCar);
     }
 
     public void AddCar(String carMake, String carModel, String carColor, int carMPG) {
@@ -86,20 +83,11 @@ public class User {
     }
 
     public void Exit() {
-        for (int i = 0; i < garage.size(); i++) {
-            Car carIndex = garage.get(i);
             try {
-                if (i == garage.size() - 1) {
-                    SaveObject(carIndex, FileName, true);
-                    System.out.println("Close");
-                } else {
-                    SaveObject(carIndex, FileName, false);
-                }
+              SaveObject(FileName);
             } catch (IOException e) {
                 System.err.println(FileName + " was not saved");
             }
             System.out.println(FileName + " saved successfully");
         }
-
-    }
 }
