@@ -9,12 +9,15 @@ public class User {
 
     List<Car> garage = new ArrayList<Car>();
 
-    private static void SaveObject(Serializable obj, String filename) throws IOException {
+    private static void SaveObject(Serializable obj, String filename, boolean Close) throws IOException {
         FileOutputStream fileSaver = new FileOutputStream(filename);
         ObjectOutputStream objectSaver = new ObjectOutputStream(fileSaver);
         objectSaver.writeObject(obj);
-        objectSaver.flush();
-        objectSaver.close();
+
+        if (Close) {
+            objectSaver.flush();
+            objectSaver.close();
+        }
     }
 
     private static <T> T LoadObject(String fileName) throws IOException, ClassNotFoundException{
@@ -86,11 +89,17 @@ public class User {
         for (int i = 0; i < garage.size(); i++) {
             Car carIndex = garage.get(i);
             try {
-                SaveObject(carIndex, FileName);
+                if (i == garage.size() - 1) {
+                    SaveObject(carIndex, FileName, true);
+                    System.out.println("Close");
+                } else {
+                    SaveObject(carIndex, FileName, false);
+                }
             } catch (IOException e) {
                 System.err.println(FileName + " was not saved");
             }
             System.out.println(FileName + " saved successfully");
         }
+
     }
 }
