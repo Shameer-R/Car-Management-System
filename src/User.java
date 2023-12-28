@@ -38,7 +38,11 @@ public class User {
             System.err.println("File not found");
         }
         System.out.println("Loaded successfully");
-        System.out.println(loadedCar);
+
+        for (int i = 0; i < loadedCar.size(); i++) {
+            Car carIndex = loadedCar.get(i);
+            garage.add(carIndex);
+        }
     }
 
     public void AddCar(String carMake, String carModel, String carColor, int carMPG) {
